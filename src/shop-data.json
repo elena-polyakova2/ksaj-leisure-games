@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Yellow Bicycle",
+    "imageUrl": "https://i.ibb.co/LQG18vR/yellow-bike.jpg",
+    "price": 125
+  },
+  {
+    "id": 2,
+    "name": "Bright Pink Bicycle ",
+    "imageUrl": "https://i.ibb.co/GMqNQVx/bright-pink-bike.jpg",
+    "price": 150
+  },
+  {
+    "id": 3,
+    "name": "Road Bicycle",
+    "imageUrl": "https://i.ibb.co/F0V4sTK/road-bike.jpg",
+    "price": 135
+  },
+  {
+    "id": 4,
+    "name": "Modern Bicycle",
+    "imageUrl": " https://i.ibb.co/wQ5Zpy8/modern-bike.jpg",
+    "price": 125
+  },
+  {
+    "id": 5,
+    "name": "Mountain Bicycle",
+    "imageUrl": " https://i.ibb.co/zGxDBqJ/mountain-bike.jpg",
+    "price": 118
+  },
+  {
+    "id": 6,
+    "name": "Pink Bicycle ",
+    "imageUrl": " https://i.ibb.co/NC3hD4n/pink-bike.jpg",
+    "price": 114
+  },
+  {
+    "id": 7,
+    "name": "Country Bicycle",
+    "imageUrl": "https://i.ibb.co/vJbN5CV/women-bike.jpg",
+    "price": 118
+  },
+  {
+    "id": 8,
+    "name": "Sport Bicycle",
+    "imageUrl": "https://i.ibb.co/9pB9P1N/sport-bike.jpg",
+    "price": 114
+  },
+  {
+    "id": 9,
+    "name": "Orange Black Bicycle",
+    "imageUrl": " https://i.ibb.co/5FXkbc8/orange-black-bike.jpg",
+    "price": 116
+  }
+]
+

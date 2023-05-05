@@ -8,6 +8,7 @@ export const UserContext = createContext ({
 });
 
 export const UserProvider = ({ children }) => {
+  //set storage for a user
   const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };
 
