@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+signOut, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 
@@ -44,9 +45,9 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
   const userSnapshot = await getDoc(userDocRef);
   console.log(userSnapshot);
   
-  //if user data exists
+  //create user if doesn't exist
   if(!userSnapshot.exists()) {
-    //create document with user data from userAuth in my collection
+    //create document with user data from userAuth
     const { displayName, email } = userAuth;
     const createdAt = new Date(); //get data when user signed in
 
@@ -68,7 +69,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
   if (!email || !password) return; //protect if don't get email or password
 
   return await createUserWithEmailAndPassword(auth, email, password);
- }
+ };
 
  //sign in with email and password
  export const signInAuthUserWithEmailAndPassword = async (email, password) => {
@@ -76,4 +77,9 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
   if (!email || !password) return; //don't run if don't get email or password
 
   return await signInWithEmailAndPassword(auth, email, password);
- }
+ };
+
+ export const signOutUser = async () => await signOut(auth);
+
+ //observer listener
+ export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
