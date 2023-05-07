@@ -32,12 +32,18 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
     );
 };
 
+//ig cart item is equal the cart item is alredy there, filter it out
+const clearCartItem = (cartItems, cartItemToClear) => {
+  return cartItems.filter(cartItem => cartItem.id !== cartItemToClear.id);
+};
+
 export const CartContext = createContext({
   isCartOpen: false,
   setIsOpen: () => {},
   cartItems: [],
   addItemToCart: () => {},
   removeItemFromCart: () => {},
+  clearItemFromCart: () => {},
   cartCount: 0
 });
 
@@ -62,12 +68,17 @@ export const CartProvider = ({ children }) => {
     setCartItems(removeCartItem(cartItems, cartItemToRemove));
   };
 
+  const clearItemFromCart = (cartItemToClear) => {
+    setCartItems(clearCartItem(cartItems, cartItemToClear));
+  };
+
   const value = { 
     isCartOpen, 
     setIsCartOpen, 
     cartItems, 
     addItemToCart, 
     removeItemFromCart,
+    clearItemFromCart,
     cartCount 
   };
 
