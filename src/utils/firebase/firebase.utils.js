@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword,
 signOut, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from 'firebase/firestore';
 
 
 const firebaseConfig = {
@@ -34,7 +34,39 @@ googleProvider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
+
+//get data
 export const db = getFirestore();
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const batch = writeBatch(db);
+  const collectionRef = collection(db, collectionKey);
+  
+
+  //get category object from data
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+  console.log('done');
+};
+
+//get categories from the actual Firebase database 
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, 'collections');
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+
+  return categoryMap;
+};
+
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
 
@@ -43,7 +75,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
   const userDocRef = doc(db, 'users', userAuth.uid); 
   
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot);
+  //console.log(userSnapshot);
   
   //create user if doesn't exist
   if(!userSnapshot.exists()) {
