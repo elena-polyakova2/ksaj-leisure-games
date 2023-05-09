@@ -1,22 +1,22 @@
-import './category-preview.styles.scss';
 import ProductCard from '../product-card/product-card.component';
+import { CategoryPreviewContainer, Title, Preview } from './category-preview.styles';
 
 const CategoryPreview = ({ title, products }) => {
  return (
-  <div className='category-preview-container'>
+  <CategoryPreviewContainer>
     <h2>
-      <span className='title'>{title.toUpperCase()}</span>
+      <Title to={title}>{title.toUpperCase()}</Title>
     </h2>
-    <div className='preview'>
+    <Preview>
       {
-        //filter by productin tha array and index in the array, and get first 4 products
+        //filter by product in tha array and index in the array, and get first 4 products
         products.filter((_, idx) => idx < 4)
         .map((product) => (
           <ProductCard key={product.id} product={product} />
         ))
       }
-    </div>
-  </div>
+    </Preview>
+  </CategoryPreviewContainer>
  );
 };
 
