@@ -6,6 +6,7 @@ import { CheckoutContainer, CheckoutHeader, HeaderBlock, Total } from './checkou
 const Checkout = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
+  
 
   return (
     <CheckoutContainer>
