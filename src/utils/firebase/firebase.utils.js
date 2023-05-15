@@ -86,7 +86,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
     }
   } 
   //if user data doesn't exist
-  return userDocRef;
+  return userSnapshot;
  };
 
  //sign up user with email and password
@@ -109,3 +109,17 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
 
  //observer listener
  export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+
+ //see if there is authenticated user already
+ export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
