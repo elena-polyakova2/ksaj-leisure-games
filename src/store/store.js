@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['user'] //values for reducer that don't need to be persisted
+  whitelist: ['cart'], //values for reducer that need to be persisted
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
