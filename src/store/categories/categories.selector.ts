@@ -8,7 +8,7 @@ const selectCategoryReducer = (state): CategoriesState => state.categories;
 export const selectCategories = createSelector(
   [selectCategoryReducer], //array of input selectors
   (categoriesSlice) => categoriesSlice.categories
-)
+);
 
 //This document transforms the data taken from API into desired form
 export const selectCategoriesMap = createSelector(
