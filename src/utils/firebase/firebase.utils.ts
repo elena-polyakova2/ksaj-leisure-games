@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from 'firebase/firestore';
-
+import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, User, NextOrObserver } from 'firebase/auth';
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs, QueryDocumentSnapshot } from 'firebase/firestore';
+import { Category } from '../../store/categories/categories.types';
 
 const firebaseConfig = {
 
@@ -36,7 +36,15 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 
 //get data
 export const db = getFirestore();
-export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+
+export type ObjectToAdd = {
+  title: string;
+};
+
+export const addCollectionAndDocuments = async<T extends ObjectToAdd> (
+  collectionKey: string, 
+  objectsToAdd: T[]
+  ): Promise<void> => {
   const batch = writeBatch(db);
   const collectionRef = collection(db, collectionKey);
   
@@ -52,17 +60,29 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 };
 
 //get categories from the actual Firebase database 
-export const getCategoriesAndDocuments = async () => {
+export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
   const collectionRef = collection(db, 'collections');
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
   //get back categories array
-  return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
+  return querySnapshot.docs.map(docSnapshot => docSnapshot.data() as Category);
 };
 
+export type AdditionalInformation = {
+  displaName?: string;
+};
 
-export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
+export type UserData = {
+  createdAt: Date;
+  displayName: string;
+  email: string;
+};
+
+export const createUserDocumentFromAuth = async (
+  userAuth: User, 
+  additionalInformation = {} as AdditionalInformation
+  ): Promise<void | QueryDocumentSnapshot<UserData>> => { //promise void or QueryDocumentSnapshot
 
   if(!userAuth) return; //protect if user didn't fill out the fields for authentication
 
@@ -82,15 +102,15 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
       await setDoc(userDocRef, { displayName, email, createdAt, ...additionalInformation });
 
     } catch (error){
-      console.log('Error occured when tried to create the user', error.message);
+      console.log('Error occured when tried to create the user', error);
     }
   } 
   //if user data doesn't exist
-  return userSnapshot;
+  return userSnapshot as QueryDocumentSnapshot<UserData>;
  };
 
  //sign up user with email and password
- export const createAuthUserWithEmailAndPassword = async (email, password) => {
+ export const createAuthUserWithEmailAndPassword = async (email: string, password: string) => {
 
   if (!email || !password) return; //protect if don't get email or password
 
@@ -98,7 +118,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
  };
 
  //sign in with email and password
- export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+ export const signInAuthUserWithEmailAndPassword = async (email: string, password: string) => {
 
   if (!email || !password) return; //don't run if don't get email or password
 
@@ -108,10 +128,10 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
  export const signOutUser = async () => await signOut(auth);
 
  //observer listener
- export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+ export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => onAuthStateChanged(auth, callback);
 
  //see if there is authenticated user already
- export const getCurrentUser = () => {
+ export const getCurrentUser = (): Promise<User | null> => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
       auth,
