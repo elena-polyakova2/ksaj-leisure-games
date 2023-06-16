@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
+import { AuthError, AuthErrorCodes } from 'firebase/auth';
 import { useDispatch } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
@@ -25,7 +26,7 @@ const SignInForm = () => {
   };
 
   //make user documents
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault(); //prevent default behaviour from the form
     
     //create user
@@ -33,11 +34,11 @@ const SignInForm = () => {
       dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch(error) {
-      switch (error.code) {
-        case 'auth/wrong-password':
+      switch ((error as AuthError).code) {
+        case AuthErrorCodes.INVALID_PASSWORD:
           alert('You entered incorrect password for the email');
           break;
-        case 'auth/user-not-found':
+        case AuthErrorCodes.USER_DELETED:
           alert('There is no user associated with this email');
           break;
         default:
@@ -47,7 +48,7 @@ const SignInForm = () => {
   }
 
   //handle update of the form fields
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target; //get all fields from input
 
     setFormFields({ ...formFields, [name]: value });
@@ -57,7 +58,7 @@ const SignInForm = () => {
     <SignInContainer>
       <h2>Already have an account?</h2>
       <span>Sign In With Your Email and Password</span>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit}>
         <FormInput label="Email" type="email" required onChange={handleChange} name="email" value={email} />
 
         <FormInput label="Password" type="password" required onChange={handleChange} name="password" value={password} />
