@@ -6,9 +6,13 @@ import Spinner from '../../components/spinner/spinner.component';
 import { selectCategoriesIsLoading, selectCategoriesMap } from '../../store/categories/categories.selector';
 import { CategoryContainer, Title } from './category.styles';
 
+type CategoryRouteParams = {
+  category: string;
+};
+
 const Category = () => {
   //take category from url parameter
-  const { category } = useParams();
+  const { category } = useParams<keyof CategoryRouteParams>() as CategoryRouteParams; //assume category is not optional value and will always be present
   //take categoriesMap from useSelector that transforms the categories array 
   const categoriesMap = useSelector(selectCategoriesMap);
 
