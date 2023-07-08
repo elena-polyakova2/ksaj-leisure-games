@@ -5,6 +5,7 @@ import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { SignInContainer, ButtonsContainer } from './sign-in-form.styles';
 import { googleSignInStart, emailSignInStart } from "../../store/user/user.action";
+import { useNavigate } from "react-router-dom";
 
 const defaultFormFields = {
   email: '',
@@ -14,6 +15,7 @@ const defaultFormFields = {
 const SignInForm = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -23,6 +25,7 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     dispatch(googleSignInStart());
+    navigate('/');
   };
 
   //make user documents
@@ -32,7 +35,9 @@ const SignInForm = () => {
     //create user
     try{
       dispatch(emailSignInStart(email, password));
+      navigate('/');
       resetFormFields();
+      
     } catch(error) {
       switch ((error as AuthError).code) {
         case AuthErrorCodes.INVALID_PASSWORD:
