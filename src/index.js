@@ -8,6 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store, persistor } from './store/store';
 import { stripePromise } from './utils/stripe/stripe.utils';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import './index.scss';
 
 
@@ -27,3 +28,4 @@ root.render(
 );
 
 reportWebVitals();
+serviceWorkerRegistration.register();
