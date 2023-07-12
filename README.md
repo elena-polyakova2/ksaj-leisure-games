@@ -1,5 +1,5 @@
 
 # ksaj-leisure-games
 
-This is a Progressive Web Application made with Javascript and Typescript.
+This is an ecommerce Progressive Web Application built with TypeScript, JavaScript, React, Redux, React Hooks, Styled-Components, Firebase and deployed on Netlify.
 
