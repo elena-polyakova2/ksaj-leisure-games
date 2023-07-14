@@ -18,8 +18,7 @@ export const NavigationContainer = styled.div`
   @media screen and (max-width: 400px) {
     height: 40px;
     padding: 5px 5px;
-    margin-bottom: 20px;
-    display: inline-flex;
+    margin-bottom: 20px;  
   }
 `;
 
@@ -35,11 +34,10 @@ padding: 25px;
 }
 
 @media screen and (max-width: 400px) {
-  display: inline-flex;
-  
+    
   .logo {
-    width: 25vw;
-    float: initial;
+    width: 20vw;
+    height: auto;
   }
 }
 `;
@@ -56,7 +54,7 @@ export const NavLinks = styled.div`
   }
 
   @media (max-width: 400px) {
-    display: inline-flex;
+    width: 75%;
   }
 `;
 
@@ -65,7 +63,6 @@ export const NavLink = styled(Link)`
   cursor: pointer;
 
   @media (max-width: 400px) {
-    padding: 10px 5px;
-    display: inline-flex;
+    padding: 5px 5px; 
   }
 `;

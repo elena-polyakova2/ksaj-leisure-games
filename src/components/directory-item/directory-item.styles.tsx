@@ -41,6 +41,12 @@ export const Body = styled.div`
     height: 15%;
     max-width: 35%;
   }
+
+  @media screen and (max-width: 400px) {
+    h2 {
+      font-size: 5vw;
+    }   
+  }
 `;
 
 export const DirectoryItemContainer = styled.div`
