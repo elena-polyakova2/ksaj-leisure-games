@@ -28,6 +28,8 @@ export const BaseButton = styled.button`
 
   @media (max-width: 400px) {
     font-size: 3.5vw;
+    min-width: 50px;
+    line-height: 20px;
   }
 `;
 export const GoogleSignInButton = styled(BaseButton)`
