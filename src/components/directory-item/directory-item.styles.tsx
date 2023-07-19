@@ -14,7 +14,7 @@ export const BackgroundImage = styled.div<BackgroundImageProps>`
 
 export const Body = styled.div`
   height: 90px;
-  padding: 0 25px;
+  padding: 0 25px 25px 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,15 +37,29 @@ export const Body = styled.div`
     font-size: 16px;
   }
 
+  @media screen and (max-width: 1000px) 
+  
+  {
+    /* height: 12%;
+    width: 25%; */        
+    height: min-content;   
+    width: min-content;
+    
+  }
+  
   @media screen and (max-width: 800px) {
-    height: 15%;
-    max-width: 35%;
+    height: min-content;   
+    width: min-content;
+    padding: 0 0 15px 0; 
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 400px) { 
+    height: min-content;
+    width: min-content;
+
     h2 {
       font-size: 5vw;
-    }   
+    }    
   }
 `;
 
@@ -80,6 +94,7 @@ export const DirectoryItemContainer = styled.div`
       opacity: 0.9;
     }
   }
+ 
 
   @media screen and (max-width: 800px) {
     height: 200px;
