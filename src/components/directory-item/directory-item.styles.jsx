@@ -10,7 +10,8 @@ export const BackgroundImage = styled.div`
 
 export const Body = styled.div`
   height: 90px;
-  padding: 0 25px;
+  /* padding: 0 25px; */
+  padding: 0 25px 25px 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,9 +34,13 @@ export const Body = styled.div`
     font-size: 16px;
   }
 
-  @media screen and (max-width: 800px) {
-    height: 15%;
-    max-width: 35%;
+  @media screen and (max-width: 1000px) {
+    height: min-content;   
+    width: min-content;   
+  }
+
+  @media screen and (max-width: 800px) { 
+    padding: 0 0 15px 0;
   }
 
   @media screen and (max-width: 400px) {

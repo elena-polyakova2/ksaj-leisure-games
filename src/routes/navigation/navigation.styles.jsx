@@ -27,11 +27,16 @@ export const LogoContainer = styled(Link)`
 
   @media screen and (max-width: 800px) {
     padding: 5px;
+
     .logo {
       width: 10vw;
       height: auto;
     }
   }
+
+  @media (max-width: 400px) {
+    padding-right: 10px; 
+  }           
 `;
 
 export const NavLinks = styled.div`
@@ -42,12 +47,12 @@ export const NavLinks = styled.div`
   justify-content: flex-end;
 
   @media screen and (max-width: 800px) {
-    width: 80%;
+    width: 90%;
   }
 
-  @media (max-width: 400px) {
-    width: 75%;  
-    font-size: 11px;  
+  @media (max-width: 300px) {
+    width: 100%;  
+    font-size: 12px;  
   }
 `;
 
@@ -55,8 +60,8 @@ export const NavLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
 
-  @media (max-width: 400px) {
-    padding: 5px 5px; 
+  @media (max-width: 300px) {
+    padding: 5px; 
   }
 `;
 
