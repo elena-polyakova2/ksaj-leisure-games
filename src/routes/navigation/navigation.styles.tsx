@@ -33,6 +33,10 @@ export const LogoContainer = styled(Link)`
       height: auto;
     }
   }
+
+  @media screen and (max-width: 400px) {
+    padding-right: 10px;
+  }
 `;
 
 export const NavLinks = styled.div`
@@ -44,6 +48,11 @@ export const NavLinks = styled.div`
 
   @media screen and (max-width: 800px) {
     width: 90%;
+  }
+
+  @media (max-width: 300px) {
+    width: 100%;  
+    font-size: 12px;  
   }
 `;
 

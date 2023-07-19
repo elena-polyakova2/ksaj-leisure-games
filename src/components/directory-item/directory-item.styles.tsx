@@ -37,26 +37,18 @@ export const Body = styled.div`
     font-size: 16px;
   }
 
-  @media screen and (max-width: 1000px) 
-  
-  {
-    /* height: 12%;
-    width: 25%; */        
+  @media screen and (max-width: 1000px) {    
     height: min-content;   
     width: min-content;
     
   }
   
   @media screen and (max-width: 800px) {
-    height: min-content;   
-    width: min-content;
     padding: 0 0 15px 0; 
   }
 
   @media screen and (max-width: 400px) { 
-    height: min-content;
-    width: min-content;
-
+    
     h2 {
       font-size: 5vw;
     }    
