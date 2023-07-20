@@ -35,7 +35,7 @@ const Navigation = () => {
               </span>)
           }
           <NavLink to='/shop'>
-            SHOP
+            SHOP ALL
           </NavLink>
           {
             currentUser ? (

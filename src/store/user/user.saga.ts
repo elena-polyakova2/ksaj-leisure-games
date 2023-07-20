@@ -5,7 +5,6 @@ import { signInSuccess, signInFailed, signUpSuccess, signUpFailed, signOutSucces
 import { getCurrentUser, createUserDocumentFromAuth, signInWithGooglePopup, signInAuthUserWithEmailAndPassword,
 createAuthUserWithEmailAndPassword, signOutUser, AdditionalInformation } from '../../utils/firebase/firebase.utils';
 
-
 export function* getSnapshotFromUserAuth(userAuth: User, additionalDetails?: AdditionalInformation) {
   try {
     const userSnapshot = yield* call(
@@ -25,6 +24,7 @@ export function* signInWithGoogle() {
   try {
     const { user } = yield* call(signInWithGooglePopup);
     yield* call(getSnapshotFromUserAuth, user);
+    window.location.href = '/';
   } catch (error) {
     yield* put(signInFailed(error as Error));
   }
@@ -41,6 +41,7 @@ export function* signInWithEmail({ payload: { email, password } }: EmailSignInSt
     if (userCredential){
       const { user } = userCredential;
       yield* call(getSnapshotFromUserAuth, user);
+      window.location.href = '/';
     }
         
   } catch (error) {
@@ -69,6 +70,7 @@ export function* signUp({ payload: { email, password, displayName } }: SignUpSta
     if (userCredential) {
       const { user } = userCredential;
       yield* put(signUpSuccess(user, { displayName }));
+      window.location.href = '/';
     }
   } catch (error) {
     yield* put(signUpFailed(error as Error));
