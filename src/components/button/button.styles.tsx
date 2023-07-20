@@ -26,7 +26,8 @@ export const BaseButton = styled.button`
     border: 1px solid black;
   }
 
-  @media (max-width: 400px) {
+
+  @media (max-width: 500px) {
     font-size: 3.5vw;
     min-width: 50px;
     line-height: 20px;

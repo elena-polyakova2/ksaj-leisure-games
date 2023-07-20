@@ -18,7 +18,6 @@ export const Title = styled(Link)`
   cursor: pointer;
 `;
 
-//TODO: find out why the styles on mobile screens don't work for the preview
 export const Preview = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
