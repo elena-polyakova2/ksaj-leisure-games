@@ -6,6 +6,7 @@ import Button from '../button/button.component';
 import { SignUpContainer } from './sign-up-form.styles';
 import { signUpStart } from '../../store/user/user.action';
 
+
 const defaultFormFields = {
   displayName: '',
   email: '',
@@ -36,6 +37,7 @@ const SignUpForm = () => {
     //create user
     try{
       dispatch(signUpStart(email, password, displayName));
+      
       resetFormFields();
     } catch(error) {
       if((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
