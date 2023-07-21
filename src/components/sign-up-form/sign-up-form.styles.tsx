@@ -14,6 +14,5 @@ export const SignUpContainer = styled.div`
     width: 90vw;
     align-items: center;
     justify-content: center;
-
   }
 `;

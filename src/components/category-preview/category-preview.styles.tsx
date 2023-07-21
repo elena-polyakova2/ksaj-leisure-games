@@ -9,6 +9,7 @@ export const CategoryPreviewContainer = styled.div`
 
   @media screen and (max-width: 800px) {
     align-items: center;
+    justify-content: center;
   }
 `;
 
