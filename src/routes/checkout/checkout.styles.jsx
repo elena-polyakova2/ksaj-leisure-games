@@ -11,8 +11,15 @@ export const CheckoutContainer = styled.div`
   @media screen and (max-width: 800px) {
     width: 90vw;
     margin-top: 35px;
-    min-height: 50vh;
+    min-height: 70vh;
   }
+
+  @media screen and (max-width: 400px) {
+    width: 70vw;
+   
+    
+  }
+          
 `;
 
 export const CheckoutHeader = styled.div`
@@ -23,7 +30,7 @@ export const CheckoutHeader = styled.div`
   border-bottom: 1px solid darkgrey;
 
   @media screen and (max-width: 800px)  {
-    width: 80vw;  
+    width: 82vw;  
   }
 `;
 
@@ -36,7 +43,7 @@ export const HeaderBlock = styled.div`
   }
 
   @media screen and (max-width: 400px) {
-    font-size: 10px;
+   font-size: 10px;
   }
 `;
 
