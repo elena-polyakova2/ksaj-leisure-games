@@ -10,7 +10,10 @@ const CategoryPreview = ({ title, products }) => {
     <Preview>
       {
         //filter by product in tha array and index in the array, and get first 4 products
-        products.filter((_, idx) => idx < 4)
+        // products.filter((_, idx) => idx < 4)
+
+        //filter by product in tha array and index in the array, and get all products
+        products.filter((_, idx) => idx < products.length)
         .map((product) => (
           <ProductCard key={product.id} product={product} />
         ))

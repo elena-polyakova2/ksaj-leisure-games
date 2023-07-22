@@ -22,6 +22,7 @@ export function* signInWithGoogle() {
   try {
     const { user } = yield call(signInWithGooglePopup);
     yield call(getSnapshotFromUserAuth, user);
+    window.location.href = '/';
   } catch (error) {
     yield put(signInFailed(error));
   }
@@ -35,6 +36,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
       password
     );
     yield call(getSnapshotFromUserAuth, user);
+    window.location.href = '/';
   } catch (error) {
     yield put(signInFailed(error));
   }
@@ -58,6 +60,7 @@ export function* signUp({ payload: { email, password, displayName } }) {
       password
     );
     yield put(signUpSuccess(user, { displayName }));
+    window.location.href = '/';
   } catch (error) {
     yield put(signUpFailed(error));
   }

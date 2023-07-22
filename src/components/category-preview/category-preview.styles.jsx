@@ -9,6 +9,7 @@ export const CategoryPreviewContainer = styled.div`
 
   @media screen and (max-width: 800px) {
     align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -22,6 +23,7 @@ export const Preview = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 20px;
+  row-gap: 20px;
 
   @media screen and (max-width: 800px) {
     grid-template-columns: 1fr 1fr;
