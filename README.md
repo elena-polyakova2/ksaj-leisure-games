@@ -45,5 +45,7 @@ There are several options for a user to use the application:
 |:--:| 
 | *Checkout Page Screenshot* |
 
+## Live
+
 ## Contributions
 Thank you to the authors of the course **Complete React Developer in 2023 (w/ Redux, Hooks, GraphQL)** from *Zero to Mastery*.
